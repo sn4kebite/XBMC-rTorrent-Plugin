@@ -28,6 +28,10 @@ def main(hash,arg1):
 		else:
 			url = os.path.join(g.__setting__('remote_folder_downloading'),path)
 
+	# XBMC fails to play urls with non-ascii unicode strings, assume UTF-8 and convert to str.
+	if isinstance(url, unicode):
+		url = url.encode('utf-8')
+
 	f_completed_chunks = int(g.rtc.f.get_completed_chunks(hash, arg1))
 	f_size_chunks = int(g.rtc.f.get_size_chunks(hash, arg1))
 	f_percent_complete = f_completed_chunks*100/f_size_chunks
