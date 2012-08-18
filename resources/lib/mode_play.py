@@ -9,7 +9,9 @@ def main(hash,arg1):
 	arg1=int(arg1)
 	# Check to see if the file has completely downloaded.
 	if g.__islocal__==1:
-		url = g.rtc.f.get_frozen_path(hash,arg1)
+		base_path = g.rtc.d.get_directory(hash)
+		f_name = g.rtc.f.get_path(hash,arg1)
+		url = os.path.join(base_path, f_name)
 	else:
 		f_name = g.rtc.f.get_path(hash, arg1)
 		dld_name = g.rtc.d.get_name(hash)
